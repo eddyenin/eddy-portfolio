@@ -6,7 +6,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <a href="" class="btn btn-md btn-primary">Add project</a>
+                        <a href="{{ url('/home/create')}}" class="btn btn-md btn-secondary">Add project</a>
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -21,10 +21,13 @@
                             </thead>
         
                             <tbody>
+                                @foreach ($projects as $project )
                                 <tr>
-                                    <td>Aflite apparel</td>
-                                    <td>https://afliteapparel.com</td>
-                                    <td>lorem</td>
+                                    <td>{{ $project->title }}</td>
+                                    <td><a href="{{ $project->link }}" target="_blank">{{ $project->link }}</a></td>
+                                    <td>
+                                        <img src="{{ asset('/images/' . $project->image )}}" width="100px" alt="">
+                                    </td>
                                     <td>
                                         <a href="">edit</a>
                                         <a href="">delete</a>
@@ -32,7 +35,7 @@
                                     </td>
         
                                 </tr>
-                               
+                                @endforeach
                             </tbody>
                             
                         </table>

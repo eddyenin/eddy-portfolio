@@ -19,8 +19,11 @@ Route::get('/', [ProfileController::class, 'index']);
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/login', [AdminController::class, 'login']);
 Route::get('/admin/register', [AdminController::class, 'register']);
+
 Route::get('/projects', [ProjectController::class]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/projects', [App\Http\Controllers\HomeController::class, 'projects'])->name('projects');
+Route::get('/home/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+Route::post('/home/store', [App\Http\Controllers\HomeController::class, 'store']);
