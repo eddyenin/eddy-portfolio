@@ -66,7 +66,7 @@
         <hr>
         <section>
             <div class="project-page">
-                <a href="" class="btn btn-md"><h5>PROJECTS <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h5></a>
+                <a href="{{ url('/projects') }}" class="btn btn-md"><h5>PROJECTS <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h5></a>
             </div>
         </section>
         <hr>

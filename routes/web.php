@@ -20,10 +20,13 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/login', [AdminController::class, 'login']);
 Route::get('/admin/register', [AdminController::class, 'register']);
 
-Route::get('/projects', [ProjectController::class]);
+Route::get('/projects', [ProjectController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/projects', [App\Http\Controllers\HomeController::class, 'projects'])->name('projects');
 Route::get('/home/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
 Route::post('/home/store', [App\Http\Controllers\HomeController::class, 'store']);
+Route::get('/home/edit/{id}', [App\Http\Controllers\HomeController::class, 'edit']);
+Route::put('/home/update/{id}', [App\Http\Controllers\HomeController::class, 'update']);
+Route::delete('/home/destroy/{id}', [App\Http\Controllers\HomeController::class, 'destroy']);

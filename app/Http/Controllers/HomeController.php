@@ -36,27 +36,55 @@ class HomeController extends Controller
     }
 
     public function store(Request $request){
-
-        $validated = $request->validate([
+      
+        $this->validate( $request,[
             'title' => 'required',
             'link' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png|max:5048'
+            'image' => 'required|mimes:jpg,jpeg,png|max:50000'
         ]);
 
         $newImageName = time() . '-' . $request->image->getClientOriginalName();
         $request->image->move(public_path('images'), $newImageName);
 
-        if ($validated){
-            $project = new Project;
-            $project->title = $request->title;
-            $project->link = $request->link;
-            $project->image = $newImageName;
+        
+        $project = new Project;
+        $project->title = $request->title;
+        $project->link = $request->link;
+        $project->image = $newImageName;
 
-            $project->save();
-            return redirect('/home/projects')->with('status', 'Project added successfully');
-        }
+        $project->save();
+        return redirect('/home/projects')->with('success', 'Project added successfully');
+
 
     }
 
+    public function edit(Project $project, $id){
+        return view('admin.edit', ['project' => $project->findOrFail($id)]);
+    }
+
+    public function update(Project $project,Request $request, $id){
+
+        $newImageName = time() . '-' . $request->image->getClientOriginalName();
+
+        $request->image->move(public_path('images'), $newImageName);
+
+        $validated = [
+            'title' => $request->title,
+            'link' => $request->link,
+            'image' => $newImageName
+        ];
+
+        $project = $project->where('id', $id);
+        $project->update($validated);
+        return redirect('/home/projects')->with('success', 'Updates successfully');
+        
+    }
+
+
+    public function destroy(Project $project, $id){
+        $project = $project->where('id',$id);
+        $project->delete();
+        return redirect('/')->with('status', 'Project deleted successfully');
+    }
 
 }

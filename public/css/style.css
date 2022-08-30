@@ -23,6 +23,12 @@ a:hover{
     max-width: 700px;
     margin: 0 auto;
 }
+.container-fluid{
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
 .profile{
     margin-top: 10px;
     margin-bottom: 20px;
@@ -40,7 +46,7 @@ a:hover{
 }
 
 img{
-    width: 200px;
+    width: 150px;
 }
 
 .bio{
@@ -79,6 +85,9 @@ img{
 
 section a:hover{
     color: #0000ff;
+}
+.head-in{
+    text-align: center;
 }
 
 /* Admin css */

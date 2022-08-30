@@ -3,7 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-10">
+                @include('inc.messages')
                 <div class="card">
                     <div class="card-header">
                         <a href="{{ url('/home/create')}}" class="btn btn-md btn-secondary">Add project</a>
@@ -23,14 +24,19 @@
                             <tbody>
                                 @foreach ($projects as $project )
                                 <tr>
-                                    <td>{{ $project->title }}</td>
+                                    <td>{{ ucfirst( $project->title) }}</td>
                                     <td><a href="{{ $project->link }}" target="_blank">{{ $project->link }}</a></td>
                                     <td>
                                         <img src="{{ asset('/images/' . $project->image )}}" width="100px" alt="">
                                     </td>
                                     <td>
-                                        <a href="">edit</a>
-                                        <a href="">delete</a>
+                                        <a href="{{ url('/home/edit/' . $project->id )}}" class="btn btn-sm btn-secondary">edit</a>  
+                                        <form method="POST"  action="{{ url('/home/destroy/' . $project->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                         <button type="submit"  class="btn btn-sm btn-danger"> Delete</button>
+                                        </form>
+
             
                                     </td>
         
