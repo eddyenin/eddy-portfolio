@@ -7,6 +7,7 @@
                 <h3>Projects</h3>
                 <p>Sample of some projects featured in and developed by myself</p>
             </div>
+            @if (!empty($projects))
             <div class="row">
                 @foreach ($projects as $project )
                 <div class="col-md-4">
@@ -24,6 +25,18 @@
                 </div>
                 @endforeach
             </div>
+            @else
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>No projects yet</p>
+                            <a href="{{ url('/') }}">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </section>
     </div>
     

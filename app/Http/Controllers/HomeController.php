@@ -37,14 +37,16 @@ class HomeController extends Controller
 
     public function store(Request $request){
       
-        $this->validate( $request,[
+        $this->validate($request,[
             'title' => 'required',
             'link' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png|max:50000'
+            'image' => 'required|mimes:jpg,jpeg,png,bmp|max:102400'
         ]);
 
-        $newImageName = time() . '-' . $request->image->getClientOriginalName();
-        $request->image->move(public_path('images'), $newImageName);
+        $image = $request->file('image');
+
+        $newImageName = time() . '-' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $newImageName);
 
         
         $project = new Project;
@@ -84,7 +86,7 @@ class HomeController extends Controller
     public function destroy(Project $project, $id){
         $project = $project->where('id',$id);
         $project->delete();
-        return redirect('/')->with('status', 'Project deleted successfully');
+        return redirect('/home/projects')->with('status', 'Project deleted successfully');
     }
 
 }
