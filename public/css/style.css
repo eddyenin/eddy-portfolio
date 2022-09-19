@@ -45,9 +45,9 @@ a:hover{
     margin-bottom: 10px;
 }
 
-img{
+/* img{
     width: 150px;
-}
+} */
 
 .bio{
     margin-bottom: 5px;
@@ -77,6 +77,10 @@ img{
 }
 .skills ul li{
    list-style: none;
+}
+.project{
+    display: grid;
+    column-gap: 2px;
 }
 
 .project-page{

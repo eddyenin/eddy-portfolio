@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <a href="{{ url('/home/create')}}" class="btn btn-md btn-secondary">Add project</a>
+                        <a href="{{ url('/home')}}" class="btn btn-md btn-secondary">Back</a>
                     </div>
                     <div class="card-body">
                         <table class="table">
