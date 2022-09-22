@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [ProfileController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/login', [AdminController::class, 'login']);
-Route::get('/admin/register', [AdminController::class, 'register']);
+Route::get('/admin', [AdminController::class, 'admin']);
+Route::get('/admin/create', [AdminController::class, 'create']);
+Route::post('/admin/store', [AdminController::class, 'store']);
+Route::get('/admin/edit/{id}', [AdminController::class, 'edit']);
+Route::put('/admin/update/{id}', [AdminController::class, 'update']);
+Route::delete('/admin/destroy/{id}', [AdminController::class, 'destroy']);
+
 
 Route::get('/projects', [ProjectController::class, 'index']);
 Auth::routes();
