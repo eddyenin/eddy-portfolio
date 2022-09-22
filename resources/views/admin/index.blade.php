@@ -15,6 +15,9 @@
                         <p><i class="fa fa-phone" aria-hidden="true"></i> +234-0703478726</p>
                         <p><i class="fa fa-map-marker" aria-hidden="true"></i>   Lagos, Nigeria</p>
                         <a href="" class="btn btn-md btn-secondary" download>Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
+
+                        <a href="{{ url('/admin/create') }}" class="btn btn-md btn-secondary">Create profile</a>
+                        <a href="" class="btn btn-md btn-secondary">Edit profile</a>
                        
                     </div>
                     

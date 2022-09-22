@@ -7,11 +7,13 @@
                 @include('inc.messages')
                 <div class="card">
                     <div class="card-header">
-                        <h3>Create profile</h3>
+                        <h3>Edit profile</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('/admin/store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/admin/update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
+
                             <div class="form-group">
                                 <input type="text" name="fname" class="form-control" placeholder="Full name" id="">
                             </div>

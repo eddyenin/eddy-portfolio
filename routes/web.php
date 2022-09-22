@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [ProfileController::class, 'index']);
-Route::get('/admin', [AdminController::class, 'admin']);
+Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/admin/create', [AdminController::class, 'create']);
 Route::post('/admin/store', [AdminController::class, 'store']);
 Route::get('/admin/edit/{id}', [AdminController::class, 'edit']);
