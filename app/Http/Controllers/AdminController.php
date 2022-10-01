@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,25 +12,32 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     
-    public function admin(){
-        return view('admin.index');
+    public function admin(Profile $profile){
+        $email = 'eddyenin6@gmail.com';
+        $profil = $profile->where('email',$email)->first();
+        return view('admin.index', ['profile' => $profil]);
     }
 
     public function create(){
         return view('admin.profile.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request, Profile $profile){
 
         $this->validate($request,[
             'fname' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'bio' => 'required',
+            'resume' => 'required',
             'image' => 'required|mimes:jpg,jpeg,png,bmp|max:102400'
         ]);
 
         $image = $request->file('image');
+        $data = $request->file('resume');
+
+        $newDoc = time() . '-' . $data->getClientOriginalExtension();
+        $data->move(public_path('docs'), $newDoc);
 
         $newImageName = time() . '-' . $image->getClientOriginalExtension();
         $image->move(public_path('images'), $newImageName);
@@ -40,6 +48,7 @@ class AdminController extends Controller
         $profile->email = $request->email;
         $profile->phone = $request->phone;
         $profile->bio = $request->bio;
+        $profile->resume = $newDoc;
         $profile->image = $newImageName;
 
         $profile->save();
@@ -48,21 +57,22 @@ class AdminController extends Controller
     }
 
     public function edit(Profile $profile, $id){
-        return view('admin.profile.edit', ['profile' => $profile->findOrFail($id)]);
+        
+        return view('admin.profile.edit', ['profile' => Profile::find($id)]);
     }
 
     public function update(Profile $profile,Request $request, $id){
 
-        $newImageName = time() . '-' . $request->image->getClientOriginalName();
+        // $editImageName = time() . '-' . $request->image->getClientOriginalName();
 
-        $request->image->move(public_path('images'), $newImageName);
+        // $request->image->move(public_path('images'), $editImageName);
 
         $validated = [
-            'name' => $request->name,
+            'name' => $request->fname,
             'email' => $request->email,
             'phone' => $request->phone,
-            'bio' => $request->bio,
-            'image' => $newImageName
+            'bio' => $request->bio
+            
         ];
 
         $profile = $profile->where('id', $id);

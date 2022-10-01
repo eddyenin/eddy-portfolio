@@ -6,20 +6,32 @@
             <div class="row">
                 <div class="col-md-12">
                    
-                    <div class="profile-img">
-                        <img src="{{ asset('images/usr-profile.png')}}" alt="img" target="_blank">
-                    </div>
-                    <div class="profile-name">
-                        <h5>AKPAENIN EDIDIONG D.</h5>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i>   eddyenin6@gmail.com</p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> +234-0703478726</p>
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>   Lagos, Nigeria</p>
-                        <a href="" class="btn btn-md btn-secondary" download>Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
+                    @if ($profile)
+                        <div class="profile-img">
+                            <img src="{{ asset('images/'. $profile->image )}}" alt="img" target="_blank">
+                        </div>
+                        <div class="profile-name">
+                            <h5>{{ $profile->name }}.</h5>
+                            <p><i class="fa fa-envelope" aria-hidden="true"></i>{{ $profile->email }}</p>
+                            <p><i class="fa fa-phone" aria-hidden="true"></i> +234-{{ $profile->phone }}</p>
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>   Lagos, Nigeria</p>
+                            <a href="{{ asset('docs/'. $profile->resume )}}" class="btn btn-md btn-secondary" download>Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
 
-                        <a href="{{ url('/admin/create') }}" class="btn btn-md btn-secondary">Create profile</a>
-                        <a href="" class="btn btn-md btn-secondary">Edit profile</a>
-                       
-                    </div>
+                            {{-- <a href="{{ url('/admin/create') }}" class="btn btn-md btn-secondary">Create profile</a> --}}
+                            <a href="{{ url('/admin/edit/'. $profile->id) }}" class="btn btn-md btn-secondary">Edit profile</a>
+                        
+                        </div>
+                    @else
+                        <div class="profile-img">
+                            <img src="{{ asset('images/usr-profile.png')}}" alt="img" target="_blank">
+                        </div>
+                        <div class="profile-name">
+                            <h5>No profile Information</h5>
+                            <a href="{{ url('/admin/create') }}" class="btn btn-md btn-secondary">Create profile</a>
+                            
+                        </div> 
+                    @endif
+                    
                     
                 </div>
             </div>
@@ -69,7 +81,7 @@
         <hr>
         <section>
             <div class="project-page">
-                <a href="" class="btn btn-md"><h5>PROJECTS <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h5></a>
+                <a href="{{url('home/projects') }}" class="btn btn-md"><h5>PROJECTS <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h5></a>
             </div>
         </section>
         <hr>

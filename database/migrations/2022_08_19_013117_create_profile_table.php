@@ -18,6 +18,7 @@ class CreateProfileTable extends Migration
             $table->string('name', 255);
             $table->string('email', 255);
             $table->string('phone');
+            $table->string('resume');
             $table->text('bio');
             $table->string('image');
             $table->timestamps();

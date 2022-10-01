@@ -6,17 +6,26 @@
             <div class="row">
                 <div class="col-md-12">
                    
-                    <div class="profile-img">
-                        <img src="{{ asset('images/usr-profile.png')}}" alt="img" target="_blank">
-                    </div>
-                    <div class="profile-name">
-                        <h5>AKPAENIN EDIDIONG D.</h5>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i>   eddyenin6@gmail.com</p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> +234-0703478726</p>
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>   Lagos, Nigeria</p>
-                        <a href="" class="btn btn-md btn-secondary" download>Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
-                       
-                    </div>
+                   @if (isset($profile))
+                        <div class="profile-img">
+                            <img src="{{ asset('images/'. $profile->image)}}" alt="img" target="_blank">
+                        </div>
+                        <div class="profile-name">
+                            <h5>{{ $profile->name }}.</h5>
+                            <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ $profile->email }}</p>
+                            <p><i class="fa fa-phone" aria-hidden="true"></i> +234-{{ $profile->phone }}</p>
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i>   Lagos, Nigeria</p>
+                            <a href="{{ asset('docs/'. $profile->resume)}}" class="btn btn-md btn-secondary" download>Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
+                        </div> 
+                    @else
+                        <div class="profile-img">
+                            <img src="{{ asset('images/usr-profile.png')}}" alt="img" target="_blank">
+                        </div>
+                        <div class="profile-name">
+                            <h5>No profile Information</h5>
+                            
+                        </div> 
+                   @endif
                     
                 </div>
             </div>

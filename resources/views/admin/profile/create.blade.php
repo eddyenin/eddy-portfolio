@@ -25,7 +25,13 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <input type="file" name="image" class="form-control" placeholder="Image" id="">
+                                <label for="">Profile Picture</label>
+                                <input type="file" name="image" class="form-control" id="">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="">Resume</label>
+                                <input type="file" name="resume" class="form-control" id="">
                             </div>
                             <br>
                             <div class="form-group">
